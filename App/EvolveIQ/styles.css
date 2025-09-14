@@ -1,0 +1,200 @@
+/* Shader Canvas */
+#shader-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    filter: blur(4px);
+    mix-blend-mode: screen;
+}
+
+/* Page Backgrounds */
+html {
+    background-color: #f5f5f5;
+}
+body {
+    background-color: transparent;
+    transition: background-color 0.5s ease;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+th, td {
+    padding: 0.75rem;
+    border: 1px solid rgba(229,231,235,1);
+    text-align: left;
+}
+thead {
+    background-color: #f9fafb;
+}
+tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+.actions button {
+    margin-right: 0.5rem;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* LinkedIn-style post formatting */
+#result > div {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+#result > div:hover {
+    transform: scale(1.01);
+}
+
+#carouselWrapper {
+    width: 100%;
+    max-width: 35.8rem; /* matches linkedin */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#carouselInner {
+    display: flex;
+    width: 100%;
+}
+
+.carousel-card {
+    min-width: 100%;
+    padding: 0 0.5rem; /* optional spacing */
+}
+
+/* styling for copy + edit buttons */
+.copy-btn,
+.edit-btn {
+    background: transparent;
+    border: none;
+    color: lightgray;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    position: relative;
+}
+
+.copy-btn:hover,
+.edit-btn:hover {
+    opacity: 1;
+}
+
+/* Tooltip styling */
+.tooltip-text {
+    position: absolute;
+    top: 120%; /* slightly below the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937; /* Tailwind gray-800 */
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease-in-out;
+    z-index: 10;
+}
+
+/* Show tooltip on hover */
+.group:hover .tooltip-text {
+    opacity: 1;
+}
+
+.feedback-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.feedback-btn:hover {
+    transform: scale(1.2);
+}
+.feedback-btn:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.feedback-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    position: relative;
+}
+.feedback-btn:hover {
+    transform: scale(1.2);
+}
+.feedback-btn:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+.feedback-btn::after {
+    content: 'Click again to undo';
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    background: #1f2937;
+    color: #fff;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+/* Only show tooltip if button is selected */
+.feedback-btn.selected-like:hover::after,
+.feedback-btn.selected-dislike:hover::after {
+    opacity: 1;
+}
+
+.selected-like {
+    color: #16a34a; /* green-600 */
+}
+.selected-dislike {
+    color: #dc2626; /* red-600 */
+}
+.animate-scale {
+    animation: pop 0.2s ease;
+}
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+#carouselIndicator {
+    backdrop-filter: blur(4px);
+    font-size: 0.825rem;
+}
+#carouselIndicatorBottom {
+    backdrop-filter: blur(4px);
+    font-size: 0.825rem;
+}
+
+a[href="history.html"] {
+    display: inline !important;
+    opacity: 1 !important;
+}

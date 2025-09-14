@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:type="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Commenter evolveIQ</title> <!-- controls text in the tab next to favicon -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Typewriter Effect -->
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js" defer></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-indigo-50 text-gray-900">
+
+<!-- Navbar -->
+<nav class="mb-2" style="background-color: rgba(134,191,248,0.82); box-shadow: 0 8px 6px -1px rgba(20, 113, 248, 0.25), 0 2px 4px -2px rgba(20, 113, 248, 0.25);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
+        <div class="flex items-center space-x-8">
+            <a href="EvolveIQ.html" class="flex items-center">
+                <svg preserveAspectRatio="xMidYMid meet" viewBox="23.87 33.83 1159.74 226.77" xmlns="http://www.w3.org/2000/svg" class="h-8 w-auto">
+                    <g>
+                        <path d="M23.87 183.7c0-45.18 32.62-77.8 73.61-77.8 44.29 0 74.81 31.42 71.22 86.78H51.4c3.89 25.14 23.64 42.49 50.27 42.49 17.06 0 35.01-9.58 43.09-23.04l19.45 19.15c-12.87 17.06-38.9 29.32-62.54 29.32-45.18 0-77.8-32.32-77.8-76.9m117.89-14.96c0-21.84-17.95-37.4-43.09-37.4s-41.89 14.96-46.38 37.4z" fill="#ffffff"></path>
+                        <path d="M169.6 108.59h29.92l48.77 125.68h5.98l47.58-125.68h29.92l-58.95 149.62h-45.48l-57.75-149.62Z" fill="#ffffff"></path>
+                        <path d="M328.78 183.7c0-45.48 33.51-77.8 80.79-77.8s80.79 32.32 80.79 77.8-33.51 76.9-80.79 76.9-80.79-31.72-80.79-76.9m134.66 0c0-30.82-22.44-52.37-53.86-52.37s-53.86 21.54-53.86 52.37 22.44 51.47 53.86 51.47 53.86-21.25 53.86-51.47" fill="#ffffff"></path>
+                        <path d="M511.91 203.15V36.85h26.93v166.3c0 22.44 6.88 31.12 27.53 31.12h15.26v23.94h-17.95c-35.01 0-51.77-17.95-51.77-55.06" fill="#ffffff"></path>
+                        <path d="M572.06 108.59h29.92l48.77 125.68h5.98l47.58-125.68h29.92l-58.95 149.62H629.8l-57.75-149.62Z" fill="#ffffff"></path>
+                        <path d="M740.23 183.7c0-45.18 32.62-77.8 73.61-77.8 44.29 0 74.81 31.42 71.22 86.78h-117.3c3.89 25.14 23.64 42.49 50.27 42.49 17.06 0 35.01-9.58 43.09-23.04l19.45 19.15c-12.87 17.06-38.9 29.32-62.54 29.32-45.18 0-77.8-32.32-77.8-76.9m117.89-14.96c0-21.84-17.95-37.4-43.09-37.4s-41.89 14.96-46.38 37.4z" fill="#ffffff"></path>
+                        <path d="M1100.17 35.18h-96.24c-14.7 0-26.67 11.96-26.67 26.67V166.2c0 14.7 11.96 26.67 26.67 26.67h50.42v-26.7l-50.39.04-.03-104.32 96.2-.03V168.8h26.7V61.85c0-14.7-11.96-26.67-26.67-26.67Z" fill="#1471f8"></path>
+                        <path fill="#1471f8" d="m1067.26 193.16 48.93 18.49v-29.29l-48.93-18.5z"></path>
+                        <path fill="#1471f8" d="M961.91 94.9v97.97h-26.1V94.9z"></path>
+                        <path fill="#1471f8" d="M961.91 35.31v46.04h-26.1V35.31z"></path>
+                        <path d="M1144.36 37.38h-5.42v-3.55h14.73v3.55h-5.34v15.18h-3.98V37.38Z" fill="#1471f8"></path>
+                        <path d="M1157.94 33.88h7.31l5.23 15.13h.56l5.26-15.13h7.31v18.65h-3.98v-15.1h-.48l-5.26 15.13h-6.24l-5.26-15.13h-.48v15.13h-3.98V33.88Z" fill="#1471f8"></path>
+                    </g>
+                </svg>
+            </a>
+        </div>
+        <div id="userInfo" class="hidden flex items-center space-x-4">
+            <img
+                    id="userAvatar"
+                    class="w-8 h-8 rounded-full border border-gray-300"
+                    src="images/defaultProfile.png"
+                    alt="Avatar"
+            />
+            <span id="userName" class="font-medium text-gray-800">…</span>
+            <button
+                    onclick="window.location.href='history.html'"
+                    class="bg-gray-100 text-gray-800 font-medium px-4 py-1 rounded hover:bg-gray-200 transition"
+            >
+                History
+            </button>
+            <button
+                    id="logoutBtn"
+                    class="bg-blue-500 text-white font-medium px-4 py-1 rounded hover:bg-blue-700 transition"
+            >
+                Logout
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- AUTH WRAPPER -->
+<section id="authPage" class="min-h-screen flex flex-col justify-center items-center bg-blue-50">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+
+        <!-- Toggle Login / Register -->
+        <div class="flex justify-around mb-6">
+            <button id="showLogin" class="px-4 py-2 font-semibold text-blue-700 border-b-2 border-blue-700">Login</button>
+            <button id="showRegister" class="px-4 py-2 font-semibold text-gray-500 hover:text-blue-700">Create Account</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input id="username" type="text" required
+                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="password" type="password" required
+                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <button type="submit"
+                    class="w-full text-white py-2 rounded-md transition"
+                    style="background-color: #e86f1c;"
+                    onmouseover="this.style.backgroundColor='#cf6119'"
+                    onmouseout="this.style.backgroundColor='#e86f1c'">
+                Log In
+            </button>
+            <div class="mt-4">
+                <button type="button" id="googleLoginBtn"
+                        class="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-800 font-medium py-2 rounded-md hover:bg-gray-50 transition">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" class="w-5 h-5" alt="Google" />
+                    Continue with Google
+                </button>
+            </div>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="registerForm" class="space-y-4 hidden">
+            <div>
+                <label for="newUsername" class="block text-sm font-medium text-gray-700">Enter Your Email</label>
+                <input id="newUsername" type="text" required
+                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+                <label for="fullName" class="block text-sm font-medium text-gray-700">
+                    Full Name
+                </label>
+                <input id="fullName" type="text" required
+                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                       placeholder="Jane Doe" />
+            </div>
+            <!-- then your existing email & password fields follow -->
+            <div>
+                <label for="newPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="newPassword" type="password" required
+                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input id="confirmPassword" type="password" required
+                       class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <button type="submit"
+                    class="w-full text-white py-2 rounded-md transition"
+                    style="background-color: #e86f1c;"
+                    onmouseover="this.style.backgroundColor='#cf6119'"
+                    onmouseout="this.style.backgroundColor='#e86f1c'">
+                Create Account
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- MAIN APP -->
+<section id="appPage" class="hidden">
+    <!-- Hero + Functionality -->
+    <main class="relative isolate px-6 lg:px-8 py-8 min-h-screen">
+        <!-- Shader Background -->
+        <!--        <canvas id="shader-bg" class="absolute inset-0 -z-10 w-full h-full pointer-events-none"></canvas>-->
+        <!-- Header -->
+        <div class="mx-auto max-w-3xl text-center py-0">
+            <h1 class="text-5xl font-bold text-blue-800">LinkedIn Commenter</h1>
+            <p id="typewriter-text" class="mt-8 text-lg text-gray-700 h-14 py-2"></p>
+        </div>
+
+        <!-- Keyword + Time Selection Form -->
+        <div class="mt-8 mx-auto" style="max-width: 34.75em;">
+            <div class="bg-white p-6 rounded-lg shadow space-y-6">
+                <!-- Tabs -->
+                <div class="flex border-b">
+                    <button id="manualTab" class="flex-1 py-2 text-center font-medium border-b-2 border-blue-600">Manual Run</button>
+                    <button id="scheduledTab" class="flex-1 py-2 text-center font-medium text-gray-500">Scheduled Run</button>
+                </div>
+
+                <form id="runForm" class="space-y-6">
+                    <!-- Manual Section -->
+                    <div id="manualSection" class="space-y-4">
+                        <!-- Keywords -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 1: Select Keywords</div>
+                            <div id="tagContainer" class="flex flex-wrap gap-2 items-center bg-gray-100 p-2 rounded">
+                                <input id="tagInput" type="text" placeholder="Enter keyword"
+                                       class="flex-grow bg-transparent placeholder-gray-500 focus:outline-none" />
+                                <button type="button" id="addKeywordBtn"
+                                        class="ml-2 text-blue-600 font-semibold">+ Add Keyword</button>
+                            </div>
+                            <input type="hidden" name="keywords" id="keywordsInput" />
+                            <p class="text-sm text-gray-500 mb-2">
+                                Enter up to 5 keywords (e.g. “AI”, "Startup Funding") to target relevant posts. Our agent will search for posts relevant to each individual keyword submitted.
+                            </p>
+                        </div>
+
+                        <!-- Step 2: Post Limit -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 2: Post Limit</div>
+                            <p class="text-sm text-gray-500 mb-2">
+                                How many posts our agent scans per keyword (5–50).
+                            </p>
+                            <input id="postLimit" type="number" min="5" max="50"
+                                   placeholder="ex. 36"
+                                   class="w-full p-2 border rounded focus:outline-none" />
+                        </div>
+
+                        <!-- Time Range -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 3: Select Time Range</div>
+                            <p class="text-sm text-gray-500 mb-2">
+                                Choose how far back to search for posts.
+                            </p>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="timeRange" value="24h" checked />
+                                <span>Past 24 hours</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="timeRange" value="7d" />
+                                <span>Past 7 days</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="timeRange" value="30d" />
+                                <span>Past 30 days</span>
+                            </label>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="space-y-2">
+                            <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Generate Comments</button>
+                            <label class="flex items-center space-x-2 text-sm text-gray-600">
+                                <input type="checkbox" name="notify" id="notifyManual" checked />
+                                <span>Email me when my comments are ready</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Scheduled Section -->
+                    <div id="scheduledSection" class="space-y-4 hidden">
+                        <!-- Keywords (same) -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 1: Select Keywords</div>
+                            <div id="tagContainer2" class="flex flex-wrap gap-2 items-center bg-gray-100 p-2 rounded">
+                                <input id="tagInput2" type="text" placeholder="Enter keyword"
+                                       class="flex-grow bg-transparent placeholder-gray-500 focus:outline-none" />
+                                <button type="button" id="addKeywordBtn2"
+                                        class="ml-2 text-blue-600 font-semibold">+ Add Keyword</button>
+                            </div>
+                            <input type="hidden" name="keywords" id="keywordsInput2" />
+                            <p class="text-sm text-gray-500 mb-2">
+                                Enter up to 5 keywords (e.g. “AI”, "Startup Funding") to target relevant posts. Our agent will search for posts relevant to each individual keyword submitted.
+                            </p>
+                        </div>
+
+                        <!-- Step 2: Post Limit -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 2: Post Limit</div>
+                            <p class="text-sm text-gray-500 mb-2">
+                                How many posts our agent scans per run (10–50)
+                            </p>
+                            <input id="postLimit2" type="number" min="10" max="50"
+                                   placeholder="ex. 36"
+                                   class="w-full p-2 border rounded focus:outline-none" />
+                        </div>
+
+                        <!-- Time Range -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 3: Select Time Range</div>
+                            <p class="text-sm text-gray-500 mb-2">
+                                Choose how far back to search for posts.
+                            </p>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="timeRangeScheduled" value="24h" checked />
+                                <span>Past 24 hours</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="timeRangeScheduled" value="7d" />
+                                <span>Past 7 days</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="timeRangeScheduled" value="30d" />
+                                <span>Past 30 days</span>
+                            </label>
+                        </div>
+
+                        <!-- Schedule Date/Time -->
+                        <div>
+                            <div class="font-semibold mb-1">Step 2: Pick Date & Time</div>
+                            <p class="text-sm text-gray-500 mb-2">
+                                Chose the date and time that you want your comments to be sent to you.
+                            </p>
+                            <input type="datetime-local" name="scheduledAt" class="w-full p-2 border rounded focus:outline-none" />
+                        </div>
+                        <!-- Submit -->
+                        <div class="space-y-2">
+                            <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Schedule Comments</button>
+                            <label class="flex items-center space-x-2 text-sm text-gray-600">
+                                <input type="checkbox" name="notify" id="notifyScheduled" checked />
+                                <span>Email me when my comments are ready</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Updated Loading -->
+        <div id="loadingStage" class="hidden flex justify-center mt-80 mb-80">
+            <div class="flex flex-col items-center space-y-4">
+                <div class="w-12 h-12 border-[6px] border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <span id="loading-typewriter" class="text-blue-700 text-base font-medium text-center block typewriter-output"></span>
+            </div>
+        </div>
+
+
+        <!-- Results Section -->
+        <section id="results" class="hidden mt-12 px-4">
+            <div id="carouselWrapper" class="relative overflow-hidden mx-auto">
+                <!-- Slide Track -->
+                <div id="carouselInner" class="flex transition-transform duration-300 ease-in-out">
+                    <!-- Cards will be injected here -->
+                </div>
+
+                <!-- Post Counter -->
+                <div id="carouselIndicator" class="absolute top-2.5 right-4 text-xs font-medium text-gray-600 bg-white/80 px-3 py-1 rounded shadow hidden z-10">
+                    1 / 1
+                </div>
+
+            </div>
+        </section>
+
+
+
+    </main>
+</section>
+
+<div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-sm px-4 py-2 rounded shadow opacity-0 transition-opacity duration-300 pointer-events-none z-50"></div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>

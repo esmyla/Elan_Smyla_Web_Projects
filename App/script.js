@@ -3,7 +3,7 @@ const socials = [
     { icon: 'github', href: 'https://github.com/esmyla', label: 'GitHub' },
     { icon: 'linkedin', href: 'https://www.linkedin.com/in/elansmyla', label: 'LinkedIn' },
     { icon: 'mail', href: 'mailto:elansmyla@gmail.com', label: 'Email' },
-    { icon: 'globe', href: 'https://yourdomain.com', label: 'Website' },
+    { icon: 'globe', href: 'https://elansmylawebproject.vercel.app', label: 'Website' },
 ];
 
 const renderIcons = (containerId) => {
@@ -27,56 +27,72 @@ lucide.createIcons();
 // === Projects Grid ===
 const projects = [
     {
-        title: "Project One",
-        blurb: "Full‑stack web app with realtime features and clean UI.",
-        tags: ["React", "Tailwind", "Supabase"],
-        href: "#"
+        name: "CalHacks",
+        path: "CalHacks/calhacks.html",
+        description: "LLM-powered workflow builder created at CalHacks.",
+        image: "CalHacks/images/screenshot.png"
     },
     {
-        title: "Project Two",
-        blurb: "AI‑assisted workflow builder with agent orchestration.",
-        tags: ["Next.js", "AI", "Edge"],
-        href: "#"
+        name: "HelloWorld",
+        path: "HelloWorld/index.html",
+        description: "Intro project using clean UI and JavaScript logic.",
+        image: "HelloWorld/images/screenshot.png"
     },
     {
-        title: "Project Three",
-        blurb: "Interactive data viz with smooth animations.",
-        tags: ["TypeScript", "D3", "UX"],
-        href: "#"
+        name: "BoilerMake",
+        path: "BoilerMake/index.html",
+        description: "Hackathon project focused on real-time collaboration.",
+        image: "BoilerMake/images/screenshot.png"
     },
     {
-        title: "Project Four",
-        blurb: "E‑commerce landing with A/B tested components.",
-        tags: ["Vite", "Analytics", "Stripe"],
-        href: "#"
+        name: "EvolveIQ",
+        path: "EvolveIQ/index.html",
+        description: "Agentic AI-powered system for social media automation.",
+        image: "EvolveIQ/images/screenshot.png"
     }
 ];
 
 const projectGrid = document.getElementById("project-grid");
 
-projects.forEach(({ title, blurb, tags, href }) => {
-    const card = document.createElement("a");
-    card.href = href;
-    card.className =
-        "block p-5 border border-white/10 bg-white/[.03] rounded-3xl hover:border-cyan-400/30 transition";
+projects.forEach((p, i) => {
+    const card = document.createElement("div");
+
+    card.className = `
+    relative
+    w-full
+    h-[350px]
+    rounded-2xl
+    overflow-hidden
+    border border-white/10
+    shadow-lg
+    flex flex-col justify-end
+    group
+  `.trim();
 
     card.innerHTML = `
-    <div class="flex justify-between items-start gap-4">
-      <h3 class="text-lg md:text-xl font-semibold text-white">${title}</h3>
-      <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-400 group-hover:text-cyan-300"></i>
-    </div>
-    <p class="mt-2 text-sm text-slate-300">${blurb}</p>
-    <div class="mt-3 flex flex-wrap gap-2">
-      ${tags.map(
-        (tag) =>
-            `<span class="text-[11px] px-2.5 py-1 bg-white/5 border border-white/10 text-slate-300 rounded-full">${tag}</span>`
-    ).join("")}
+    <!-- Background image -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${p.image}');"></div>
+
+    <!-- Gradient overlay for readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60 z-[1]"></div>
+
+    <!-- Bottom overlay content -->
+<div class="relative z-[2] px-3 py-3 bg-black/40 backdrop-blur-md">
+      <h3 class="text-xl font-semibold text-white">${p.name}</h3>
+      <p class="text-sm text-slate-300 mt-2">${p.description}</p>
+      <a
+        href="${p.path}"
+        target="_blank"
+        class="inline-block mt-3 px-4 py-2 text-sm text-cyan-200 border border-cyan-500/50 rounded-2xl hover:bg-cyan-500/10"
+      >
+        View Project
+      </a>
     </div>
   `;
 
     projectGrid.appendChild(card);
 });
-lucide.createIcons();
+
 
 // Set current year in footer
 document.getElementById("year").textContent = new Date().getFullYear();
