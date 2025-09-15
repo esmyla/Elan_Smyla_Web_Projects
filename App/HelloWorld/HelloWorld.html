@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please enter your equation:</title>
+
+    <!-- Link to Bootstrap CSS for responsive styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Link to MathQuill CSS for rendering mathematical expressions -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css">
+
+    <!-- Link to Google Fonts for custom font styling -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .navbar-brand {
+            background: linear-gradient(to right, #f86c7a, #7cdbfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Make text color transparent */
+            font-size: 3vw; /* Adjust the size as needed */
+            font-weight: bold; /* Optional: make it bold */
+            margin-right: 5px;
+        }
+
+        .navbar {
+            font-size: 1.5vw; /* Adjust the size as needed */
+            font-weight: bold; /* Optional: make it bold */
+            margin: 0px;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 0px; /* Adjust the space between items */
+        }
+
+        .navbar-nav .nav-item:last-child {
+            margin-right: 0; /* Remove margin for the last item */
+        }
+
+        /* Styling for the body, including a gradient background and centering content */
+        body {
+            background: linear-gradient(to right, #f86c7a, #7cdbfa);
+            min-height: 120vh; /* Ensures body height is sufficient for content */
+            display: flex;
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+            font-family: 'Nunito', sans-serif;
+            color: #e0e0e0; /* Text color */
+            margin: 0; /* Remove default margin */
+            height: 100vh; /* Full viewport height */
+            overflow-y: auto; /* Enables vertical scrolling if necessary */
+        }
+
+        /* Container for the main content with background, padding, and shadow */
+        .container {
+            max-width: 70vw; /* Maximum width for the container */
+            background: rgba(25, 25, 25, 0.9); /* Semi-transparent background */
+            border-radius: 15px; /* Rounded corners */
+            padding: 30px; /* Padding around content */
+            min-height: 80vh; /* Minimum height for the container */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* Shadow for depth effect */
+            text-align: center; /* Center-aligns text within the container */
+        }
+
+        /* Styling for the heading */
+        h3 {
+            font-weight: 620; /* Semi-bold text */
+            color: #ffffff; /* White text color */
+            margin-bottom: 3.2vw; /* Space below the heading */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for text effect */
+            box-shadow: 0 10px 30px rgb(0, 0, 0); /* Shadow for the heading */
+            background: linear-gradient(to right, #f86c7a, #7cdbfa); /* Gradient background */
+            padding: 2.5vh; /* Padding around the text */
+            border-radius: 10px; /* Rounded corners */
+            max-width: 60vw; /* Maximum width of the heading */
+            margin-top: 15vh; /* Space above the heading */
+            margin-left: auto; /* Centers the heading horizontally */
+            margin-right: auto; /* Centers the heading horizontally */
+            font-size: 3.7vw; /* Increase the font size (adjust as needed) */
+        }
+
+
+        /* Container for the MathQuill input field */
+        .math-container {
+            border: 1px solid #3b8dbf; /* Border color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 1.5vw; /* Padding inside the container */
+            min-height: 6vw; /* Minimum height for the container */
+            min-width: 40vw; /* Minimum width for the container */
+            margin-bottom: 1.25vw; /* Space below the math container */
+            cursor: text; /* Cursor indicates text input area */
+            background-color: rgba(150, 150, 150, 0.9); /* Background color */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+            font-size: 1.5vw;
+        }
+
+        /* Change background color when the MathQuill container is focused */
+        .math-container:focus {
+            background-color: #2a3b4d; /* Darker background on focus */
+        }
+
+        /* Styling for symbol buttons container */
+        .symbol-buttons {
+            display: flex; /* Flexbox for layout */
+            flex-wrap: wrap; /* Allows buttons to wrap to the next line */
+            gap: 0.65vw; /* Space between buttons */
+            justify-content: center; /* Center-aligns buttons */
+            margin-bottom: 0.9vw; /* Space below symbol buttons */
+        }
+
+        .symbol-buttons button {
+            font-size: 1.35vw; /* Increase the font size (adjust as needed) */
+            padding: 1vw 1.7vw; /* Adjust padding for better appearance */
+        }
+
+
+        /* Container for each category of symbols */
+        .category {
+            position: relative; /* Allows positioning of the symbols dropdown */
+            display: inline-block; /* Keeps each category inline */
+        }
+
+        /* Hidden symbols dropdown that appears on hover */
+        .symbols {
+            display: none; /* Initially hidden */
+            position: absolute; /* Position relative to category */
+            background: rgba(25, 25, 25, 0.9); /* Background color */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Shadow effect */
+            padding: 1vh; /* Padding inside the dropdown */
+            z-index: 1; /* Ensures dropdown appears above other elements */
+        }
+
+        /* Show symbols dropdown on hover */
+        .category:hover .symbols {
+            display: block; /* Display the symbols on hover */
+        }
+
+        /* Styling for individual symbol buttons */
+        .symbols button {
+            font-size: 1.35vw; /* Font size for buttons */
+            border-radius: 25px; /* Rounded corners */
+            border: none; /* No border */
+            padding: 1.25vh 1.25vw; /* Padding around button text */
+            background-color: #3b8dbf; /* Button background color */
+            color: white; /* Button text color */
+            margin: 0.25vw 0; /* Space above and below buttons */
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+        }
+
+        /* Change background and scale button on hover */
+        .symbols button:hover {
+            background-color: #27a3bb; /* Change background color on hover */
+            transform: scale(1.05); /* Slightly enlarge button */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow effect on hover */
+        }
+
+        /* Styling for the submit button */
+        #submitBtn {
+            position: relative; /* Allows for positioning effects */
+            overflow: hidden; /* Hides overflow content */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+            border-radius: 25px; /* Rounded corners */
+            padding: 1.55vh 1.75vw; /* Padding around button text */
+            font-size: 2.75vw; /* Font size */
+            background: linear-gradient(to right, #f86c7a, #7cdbfa); /* Gradient background */
+            color: white; /* Text color */
+            border: none; /* No border */
+            margin-top: 8px; /* Space above the button */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+        }
+
+        /* Change background and scale submit button on hover */
+        #submitBtn:hover {
+            background-color: #27a3bb; /* Change background color on hover */
+            transform: scale(1.05); /* Slightly enlarge button */
+        }
+
+        /* Spinner styling for loading indication */
+        .spinner {
+            display: none; /* Hidden by default */
+        }
+
+        /* Container for video player, hidden by default */
+        .video-container {
+            display: none; /* Initially hidden */
+            margin-top: 1.25vw; /* Space above the video container */
+        }
+
+        /* Video player styling */
+        #videoPlayer {
+            border-radius: 0.75vw; /* Rounded corners for the video player */
+            overflow: hidden; /* Hides overflow content */
+            box-shadow: 0 0.35vw 1.25vw rgba(0, 0, 0, 0.5); /* Shadow effect */
+        }
+
+        /* Background image for the container */
+        .container {
+            background-image: url('images/mathimages2.jpg'); /* Background image */
+            background-size: cover; /* Ensure the image covers the entire container */
+            background-position: center; /* Center the image */
+            padding: 1.25vw; /* Padding around the content */
+            color: white; /* Adjust text color for better readability */
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Navigation bar at the top of the page -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">MathGen</a> <!-- Brand name -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> <!-- Toggle button for mobile view -->
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="Home.html">Home</a> <!-- Home link -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Generate</a> <!-- Current page link -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="About.html">About Us</a> <!-- About link -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="WProblems.html">Word Problems</a> <!-- About link -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main content container -->
+<div class="container">
+    <h3>Please enter your equation:</h3> <!-- Heading for user input -->
+
+    <!-- MathQuill Element for entering mathematical equations -->
+    <div id="mathContainer" class="math-container" tabindex="0"></div>
+
+    <!-- Container for symbol buttons categorized by type -->
+    <div class="symbol-buttons">
+        <div class="category">
+            <button class="btn btn-secondary">Calculus</button> <!-- Button for calculus symbols -->
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\int')">∫</button> <!-- Integral symbol -->
+                <button onmousedown="insertSymbol('\\frac{d}{dx}')">d/dx</button> <!-- Derivative symbol -->
+                <button onmousedown="insertSymbol('\\infty')">∞</button> <!-- Infinity symbol -->
+                <button onmousedown="insertSymbol('\\sum')">Σ</button> <!-- Summation symbol -->
+                <button onmousedown="insertLimit()">lim</button> <!-- Limit symbol -->
+            </div>
+        </div>
+
+        <div class="category">
+            <button class="btn btn-secondary">Algebra</button> <!-- Button for algebra symbols -->
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\pm')">±</button> <!-- Plus-minus symbol -->
+                <button onmousedown="insertSymbol('\\times')">×</button> <!-- Multiplication symbol -->
+                <button onmousedown="insertSymbol('\\div')">÷</button> <!-- Division symbol -->
+                <button onmousedown="insertSquareRoot()">√</button> <!-- Square root symbol -->
+            </div>
+        </div>
+
+        <div class="category">
+            <button class="btn btn-secondary">Greek Letters</button> <!-- Button for Greek letters -->
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\pi')">π</button> <!-- Pi  symbol -->
+                <button onmousedown="insertSymbol('\\alpha')">α</button> <!-- Alpha symbol -->
+                <button onmousedown="insertSymbol('\\beta')">β</button> <!-- Beta symbol -->
+                <button onmousedown="insertSymbol('\\gamma')">γ</button> <!-- Gamma symbol -->
+                <button onmousedown="insertSymbol('\\delta')">δ</button> <!-- Delta symbol -->
+                <button onmousedown="insertSymbol('\\epsilon')">ε</button> <!-- Epsilon symbol -->
+                <button onmousedown="insertSymbol('\\theta')">θ</button> <!-- Theta symbol -->
+                <button onmousedown="insertSymbol('\\omega')">ω</button> <!-- Omega symbol -->
+                <button onmousedown="insertSymbol('\\Delta')">Δ</button> <!-- Uppercase Delta symbol -->
+                <button onmousedown="insertSymbol('\\nabla')">∇</button> <!-- Nabla symbol -->
+            </div>
+        </div>
+
+        <div class="category">
+            <button class="btn btn-secondary">Logic</button> <!-- Button for logic symbols -->
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\forall')">∀</button> <!-- Universal quantifier -->
+                <button onmousedown="insertSymbol('\\exists')">∃</button> <!-- Existential quantifier -->
+                <button onmousedown="insertSymbol('\\neg')">¬</button> <!-- Negation symbol -->
+                <button onmousedown="insertSymbol('\\land')">∧</button> <!-- Logical AND -->
+                <button onmousedown="insertSymbol('\\lor')">∨</button> <!-- Logical OR -->
+                <button onmousedown="insertSymbol('\\Rightarrow')">⇒</button> <!-- Implication -->
+                <button onmousedown="insertSymbol('\\Leftrightarrow')">⇔</button> <!-- Biconditional -->
+            </div>
+        </div>
+
+        <div class="category">
+            <button class="btn btn-secondary">Comparisons</button> <!-- Button for comparison symbols -->
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\leq')">≤</button> <!-- Less than or equal to -->
+                <button onmousedown="insertSymbol('\\geq')">≥</button> <!-- Greater than or equal to -->
+                <button onmousedown="insertSymbol('\\approx')">≈</button> <!-- Approximately equal to -->
+                <button onmousedown="insertSymbol('\\equiv')">≡</button> <!-- Identically equal to -->
+            </div>
+        </div>
+
+    </div>
+
+    <button id="submitBtn">Generate Video</button> <!-- Button to generate the video -->
+
+    <!-- Spinner to indicate loading process -->
+    <div class="spinner text-center mt-3">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span> <!-- Visually hidden loading text -->
+        </div>
+    </div>
+
+    <!-- Container for the video player, initially hidden -->
+    <div class="video-container">
+        <video id="videoPlayer" controls class="w-100"> <!-- Video player element -->
+            <source id="videoSource" type="video/mp4"> <!-- Source for the video -->
+            Your browser does not support the video tag. <!-- Fallback text for unsupported browsers -->
+        </video>
+    </div>
+
+</div>
+<script>
+    function insertLimit() {
+        // Insert a limit expression with placeholders for lower and upper limits
+        const limitExpression = `\\lim_{a \\to b}`; // Placeholder for limits
+        mathField.write(limitExpression);
+    }
+</script>
+
+<!-- Scripts for Bootstrap and dependencies -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Script for MathQuill -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+
+<script>
+    // Initialize MathQuill with specific options
+    var MQ = MathQuill.getInterface(2);
+    var mathField = MQ.MathField(document.getElementById('mathContainer'), {
+        spaceBehavesLikeTab: true, // Space key acts as tab
+        handlers: {
+            enter: function () {
+                document.getElementById('submitBtn').click(); // Submit when Enter is pressed
+            }
+        }
+    });
+
+    // Function to insert symbols into the MathQuill input field
+    function insertSymbol(symbol) {
+        mathField.write(symbol); // Writes the symbol to the MathQuill field
+    }
+
+    // Function to insert square root symbol
+    function insertSquareRoot() {
+        mathField.cmd('sqrt'); // Inserts square root command
+    }
+
+    // Event listener for the submit button
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        // Get references to UI elements
+        const spinner = document.querySelector('.spinner'); // Spinner for loading indication
+        const videoContainer = document.querySelector('.video-container'); // Container for the video
+        const videoPlayer = document.getElementById('videoPlayer'); // Video player element
+        const videoSource = document.getElementById('videoSource'); // Video source element
+
+        // Show the spinner while processing
+        spinner.style.display = 'block'; // Display spinner
+        videoContainer.style.display = 'none'; // Hide video container initially
+
+        // Optional: Extract equation entered by the user in LaTeX format
+        const equation = mathField.latex(); // Extract LaTeX string from MathQuill field (if needed)
+
+        // Set the video source and show the video with a 6-second delay
+        setTimeout(() => {
+            videoSource.src = "https://manors-videos-bucket.s3.us-east-2.amazonaws.com/c9dcd504-9404-11ef-9c17-c6ac684d68cbvideo.mp4"; // Set the video source
+            videoPlayer.load(); // Load the new video source into the player
+            videoContainer.style.display = 'block'; // Show the video container
+            spinner.style.display = 'none'; // Hide the spinner
+        }, 1000); // 6000ms = 6 seconds
+    });
+</script>
+</body>
+</html>

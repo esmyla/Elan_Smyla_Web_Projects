@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding for the document -->
+    <meta charset="UTF-8">
+    <!-- Responsive design meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please enter your word problem:</title>
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Google Fonts for custom typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Navbar brand styling */
+        .navbar-brand {
+            background: linear-gradient(to right, rgba(178, 70, 255, 0.91), rgb(255, 181, 0));
+            -webkit-background-clip: text; /* Clipping background to text */
+            -webkit-text-fill-color: transparent; /* Making text fill transparent */
+            font-size: 3vw; /* Responsive font size */
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            font-size: 1.5vw; /* Responsive font size */
+            font-weight: bold;
+            margin: 0px;
+        }
+
+        /* Body styling */
+        body {
+            background: linear-gradient(to right, rgba(178, 70, 255, 0.91), rgb(255, 181, 0)); /* Gradient background */
+            min-height: 100vh; /* Full viewport height */
+            display: flex; /* Flexbox for centering content */
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito', sans-serif; /* Custom font */
+            color: #e0e0e0; /* Text color */
+            margin: 0; /* Remove default margin */
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 70vw; /* Maximum width */
+            background: rgba(25, 25, 25, 0.9); /* Semi-transparent background */
+            border-radius: 15px; /* Rounded corners */
+            padding: 30px; /* Padding inside the container */
+            min-height: 70vh; /* Minimum height */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* Shadow effect */
+            text-align: center; /* Centered text */
+        }
+
+        /* Header styling */
+        h3 {
+            color: #ffffff; /* Header text color */
+            margin-bottom: 2vh; /* Space below the header */
+            margin-top: 10vh;
+        }
+
+        /* Textarea styling */
+        #wordProblem {
+            width: 100%; /* Full width */
+            height: 150px; /* Height of the textarea */
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px; /* Space below the textarea */
+            padding: 10px; /* Padding inside the textarea */
+            background-color: rgba(150, 150, 150, 0.9); /* Semi-transparent background */
+            border: none; /* No border */
+        }
+
+        /* Submit button styling */
+        #submitBtn {
+            background: linear-gradient(to right, rgba(178, 70, 255, 0.91), rgb(255, 181, 0)); /* Gradient background */
+            color: white; /* Text color */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding around the button */
+            border-radius: 25px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Transition effect */
+        }
+
+        /* Submit button hover effect */
+        #submitBtn:hover {
+            background-color: #27a3bb; /* Change background color on hover */
+        }
+
+        /* Output styling */
+        .output {
+            margin-top: 20px; /* Space above the output area */
+            font-size: 2em; /* Font size for output */
+            color: #ffffff; /* Text color */
+        }
+
+        #wordProblem {
+            width: 100%; /* Full width */
+            height: 150px; /* Height of the textarea */
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 20px; /* Space below the textarea */
+            padding: 10px; /* Padding inside the textarea */
+            background-color: rgba(150, 150, 150, 0.9); /* Semi-transparent background */
+            border: none; /* No border */
+            font-size: 2.5vh; /* Set font size for the textarea */
+        }
+
+
+        /* Symbol buttons container styling */
+        .symbol-buttons {
+            display: flex; /* Flexbox layout */
+            flex-wrap: wrap; /* Wrap symbols to next line */
+            gap: 0.65vw; /* Space between buttons */
+            justify-content: center; /* Center buttons */
+            margin-bottom: 0.9vw; /* Space below symbol buttons */
+        }
+
+        /* Individual symbol button styling */
+        .symbol-buttons button {
+            font-size: 1.35vw; /* Responsive font size */
+            padding: 1vw 1.7vw; /* Padding inside symbol buttons */
+        }
+
+        /* Category button styling */
+        .category {
+            position: relative; /* Positioning for absolute child elements */
+            display: inline-block; /* Inline-block for button alignment */
+        }
+
+        /* Hidden symbols initially */
+        .symbols {
+            display: none; /* Initially hidden */
+            position: absolute; /* Positioning below category button */
+            background: rgba(25, 25, 25, 0.9); /* Semi-transparent background */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Shadow effect */
+            padding: 1vh; /* Padding inside symbols container */
+            z-index: 1; /* Stack on top */
+        }
+
+        /* Show symbols on category hover */
+        .category:hover .symbols {
+            display: block; /* Display symbols */
+        }
+
+        /* Individual symbol button styling */
+        .symbols button {
+            font-size: 1.35vw; /* Responsive font size */
+            border-radius: 25px; /* Rounded corners */
+            border: none; /* No border */
+            padding: 1.25vh 1.25vw; /* Padding inside symbol buttons */
+            background-color: #3b8dbf; /* Background color */
+            color: white; /* Text color */
+            margin: 0.25vw 0; /* Margin around buttons */
+            transition: all 0.3s ease; /* Transition effect */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+        }
+
+        /* Hover effect for symbol buttons */
+        .symbols button:hover {
+            background-color: #27a3bb; /* Change background color on hover */
+            transform: scale(1.05); /* Slightly enlarge button */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+        }
+
+        /* Spinner styling for loading state */
+        .spinner {
+            display: none; /* Initially hidden */
+        }
+
+        /* Video container styling */
+        .video-container {
+            display: none; /* Initially hidden */
+            margin-top: 1.25vw; /* Space above video container */
+        }
+
+        /* Video player styling */
+        #videoPlayer {
+            border-radius: 0.75vw; /* Rounded corners */
+            overflow: hidden; /* Hide overflow */
+            box-shadow: 0 0.35vw 1.25vw rgba(0, 0, 0, 0.5); /* Shadow effect */
+        }
+
+        /* Background image for container */
+        .container {
+            background-image: url('images/wProblemImg.webp'); /* Background image */
+            background-size: cover; /* Cover the entire area */
+            background-position: center; /* Center the image */
+            padding: 1.25vw; /* Padding inside the container */
+            color: white; /* Text color */
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <!-- Brand name link -->
+        <a class="navbar-brand" href="#">MathGen</a>
+        <!-- Button for toggling mobile view -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <!-- Navigation links -->
+                <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Generate</a></li>
+                <li class="nav-item"><a class="nav-link" href="About.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Word Problems</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h3>Please enter your word problem:</h3>
+    <!-- Textarea for user input -->
+    <textarea id="wordProblem" placeholder="Type your word problem here..."></textarea>
+    <div id="output" class="output"></div>
+
+    <div class="symbol-buttons">
+        <!-- Calculus symbols category -->
+        <div class="category">
+            <button class="btn btn-secondary">Calculus</button>
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\int')">∫</button>
+                <button onmousedown="insertSymbol('\\frac{d}{dx}')">d/dx</button>
+                <button onmousedown="insertSymbol('\\infty')">∞</button>
+                <button onmousedown="insertSymbol('\\sum')">Σ</button>
+                <button onmousedown="insertLimit()">lim</button>
+            </div>
+        </div>
+        <!-- Algebra symbols category -->
+        <div class="category">
+            <button class="btn btn-secondary">Algebra</button>
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\pm')">±</button>
+                <button onmousedown="insertSymbol('\\times')">×</button>
+                <button onmousedown="insertSymbol('\\div')">÷</button>
+                <button onmousedown="insertSymbol('\\sqrt{}')">√</button>
+            </div>
+        </div>
+        <!-- Greek letters category -->
+        <div class="category">
+            <button class="btn btn-secondary">Greek Letters</button>
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\pi')">π</button>
+                <button onmousedown="insertSymbol('\\alpha')">α</button>
+                <button onmousedown="insertSymbol('\\beta')">β</button>
+                <button onmousedown="insertSymbol('\\gamma')">γ</button>
+                <button onmousedown="insertSymbol('\\delta')">δ</button>
+                <button onmousedown="insertSymbol('\\epsilon')">ε</button>
+                <button onmousedown="insertSymbol('\\theta')">θ</button>
+                <button onmousedown="insertSymbol('\\omega')">ω</button>
+                <button onmousedown="insertSymbol('\\Delta')">Δ</button>
+                <button onmousedown="insertSymbol('\\nabla')">∇</button>
+            </div>
+        </div>
+        <!-- Logic symbols category -->
+        <div class="category">
+            <button class="btn btn-secondary">Logic</button>
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\forall')">∀</button>
+                <button onmousedown="insertSymbol('\\exists')">∃</button>
+                <button onmousedown="insertSymbol('\\neg')">¬</button>
+                <button onmousedown="insertSymbol('\\land')">∧</button>
+                <button onmousedown="insertSymbol('\\lor')">∨</button>
+                <button onmousedown="insertSymbol('\\Rightarrow')">⇒</button>
+                <button onmousedown="insertSymbol('\\Leftrightarrow')">⇔</button>
+            </div>
+        </div>
+        <!-- Comparison symbols category -->
+        <div class="category">
+            <button class="btn btn-secondary">Comparisons</button>
+            <div class="symbols">
+                <button onmousedown="insertSymbol('\\leq')">≤</button>
+                <button onmousedown="insertSymbol('\\geq')">≥</button>
+                <button onmousedown="insertSymbol('\\approx')">≈</button>
+                <button onmousedown="insertSymbol('\\equiv')">≡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button to generate video -->
+    <button id="submitBtn">Generate Video</button>
+
+    <!-- Spinner to indicate loading process -->
+    <div class="spinner text-center mt-3">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span> <!-- Visually hidden loading text -->
+        </div>
+    </div>
+
+    <!-- Container for the video player, initially hidden -->
+    <div class="video-container">
+        <video id="videoPlayer" controls class="w-100"> <!-- Video player element -->
+            <source id="videoSource" type="video/mp4"> <!-- Source for the video -->
+            Your browser does not support the video tag. <!-- Fallback text for unsupported browsers -->
+        </video>
+    </div>
+</div>
+
+<script>
+    // Function to insert a symbol at the cursor position in the textarea
+    function insertSymbol(symbol) {
+        const textArea = document.getElementById('wordProblem');
+        const start = textArea.selectionStart; // Get cursor start position
+        const end = textArea.selectionEnd; // Get cursor end position
+
+        // Insert symbol at cursor position
+        textArea.value = textArea.value.substring(0, start) + symbol + textArea.value.substring(end);
+
+        // Move cursor to the end of the inserted symbol
+        textArea.selectionStart = textArea.selectionEnd = start + symbol.length;
+        textArea.focus(); // Focus back to the textarea
+    }
+
+    // Function to insert the limit symbol with a space
+    function insertLimit() {
+        const textArea = document.getElementById('wordProblem');
+        const limitSymbol = 'lim '; // Limit symbol with space
+        const start = textArea.selectionStart; // Get cursor start position
+        const end = textArea.selectionEnd; // Get cursor end position
+
+        // Insert limit symbol at cursor position
+        textArea.value = textArea.value.substring(0, start) + limitSymbol + textArea.value.substring(end);
+
+        // Move cursor to the end of the inserted symbol
+        textArea.selectionStart = textArea.selectionEnd = start + limitSymbol.length;
+        textArea.focus(); // Focus back to the textarea
+    }
+
+    // Event listener for the submit button
+    document.getElementById('submitBtn').addEventListener('click', function () {
+        // Get references to UI elements
+        const spinner = document.querySelector('.spinner'); // Spinner for loading indication
+        const videoContainer = document.querySelector('.video-container'); // Container for the video
+        const videoPlayer = document.getElementById('videoPlayer'); // Video player element
+        const videoSource = document.getElementById('videoSource'); // Video source element
+
+        // Show the spinner while processing
+        spinner.style.display = 'block'; // Display spinner
+        videoContainer.style.display = 'none'; // Hide video container initially
+
+        // Optional: Extract equation entered by the user in LaTeX format
+        const equation = mathField.latex(); // Extract LaTeX string from MathQuill field (if needed)
+
+        // Set the video source and show the video with a 6-second delay
+        setTimeout(() => {
+            videoSource.src = "https://manors-videos-bucket.s3.us-east-2.amazonaws.com/c9dcd504-9404-11ef-9c17-c6ac684d68cbvideo.mp4"; // Set the video source
+            videoPlayer.load(); // Load the new video source into the player
+            videoContainer.style.display = 'block'; // Show the video container
+            spinner.style.display = 'none'; // Hide the spinner
+        }, 1000); // 6000ms = 6 seconds
+    });
+</script>
+
+
+<!-- Bootstrap JavaScript for interactivity -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
