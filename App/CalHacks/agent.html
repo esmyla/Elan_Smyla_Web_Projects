@@ -255,19 +255,85 @@
 
     agentForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        loadingBarContainer.classList.remove('hidden');
-        loadingBar.style.width = '70%';
+        // Always open the API disconnect modal
+        openModal('apiModal');
 
-        setTimeout(() => {
-            loadingBar.style.width = '100%';
-            setTimeout(() => {
-                loadingBarContainer.innerHTML = `<p class="text-center text-green-600 font-bold text-xl mt-4">Agent Created Successfully!</p>`;
-                const roots = buildAgentTree(agentList);
-                agentTree.innerHTML = '';
-                roots.forEach(r => agentTree.appendChild(renderNodeHorizontal(r)));
-            }, 1500);
-        }, 3500);
+        // e.preventDefault();
+        // loadingBarContainer.classList.remove('hidden');
+        // loadingBar.style.width = '70%';
+        //
+        // setTimeout(() => {
+        //     loadingBar.style.width = '100%';
+        //     setTimeout(() => {
+        //         loadingBarContainer.innerHTML = `<p class="text-center text-green-600 font-bold text-xl mt-4">Agent Created Successfully!</p>`;
+        //         const roots = buildAgentTree(agentList);
+        //         agentTree.innerHTML = '';
+        //         roots.forEach(r => agentTree.appendChild(renderNodeHorizontal(r)));
+        //     }, 1500);
+        // }, 3500);
     });
+
 </script>
+ <!-- ──────────────────────── MODALS ──────────────────────── -->
+    <!-- API Disconnect Modal -->
+    <div id="apiModal"
+         class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-xl p-8 max-w-md w-full text-center space-y-6">
+            <h3 class="text-2xl font-bold text-indigo-900">API keys disconnected</h3>
+            <p class="text-gray-800">
+                Please visit
+                <a href="https://youtu.be/UddG8Rb29Vg" target="_blank"
+                   class="text-indigo-600 underline">this video</a>
+                to learn more about HiveAI, then reload the page.
+            </p>
+            <button onclick="location.reload()"
+                    class="w-full rounded-md bg-gradient-to-r from-blue-500 via-indigo-500
+               to-purple-600 px-4 py-2 text-lg font-bold text-white shadow-lg
+               hover:shadow-xl transition-all duration-300">
+                Reload Page
+            </button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal"
+         class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-xl p-8 max-w-md w-full text-center space-y-6">
+            <h3 class="text-2xl font-bold text-red-700">Something went wrong</h3>
+            <p class="text-gray-800">We couldn’t process your request. Please try again later.</p>
+            <button onclick="closeModal('errorModal')"
+                    class="w-full rounded-md bg-gradient-to-r from-red-500 to-pink-600
+               px-4 py-2 text-lg font-bold text-white shadow-lg
+               hover:shadow-xl transition-all duration-300">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal"
+         class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-xl p-8 max-w-md w-full text-center space-y-6">
+            <h3 class="text-2xl font-bold text-green-700">Agent Created!</h3>
+            <p class="text-gray-800">Your agent was successfully created and is ready to explore the hive.</p>
+            <button onclick="closeModal('successModal')"
+                    class="w-full rounded-md bg-gradient-to-r from-green-500 to-emerald-600
+               px-4 py-2 text-lg font-bold text-white shadow-lg
+               hover:shadow-xl transition-all duration-300">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Simple modal open/close helpers
+        function openModal(id) {
+        document.getElementById(id).classList.remove("hidden");
+    }
+        function closeModal(id) {
+        document.getElementById(id).classList.add("hidden");
+    }
+    </script>
+
 </body>
 </html>

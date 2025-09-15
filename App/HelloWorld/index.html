@@ -364,27 +364,66 @@
 
     // Event listener for the submit button
     document.getElementById('submitBtn').addEventListener('click', function () {
-        // Get references to UI elements
-        const spinner = document.querySelector('.spinner'); // Spinner for loading indication
-        const videoContainer = document.querySelector('.video-container'); // Container for the video
-        const videoPlayer = document.getElementById('videoPlayer'); // Video player element
-        const videoSource = document.getElementById('videoSource'); // Video source element
-
-        // Show the spinner while processing
-        spinner.style.display = 'block'; // Display spinner
-        videoContainer.style.display = 'none'; // Hide video container initially
-
-        // Optional: Extract equation entered by the user in LaTeX format
-        const equation = mathField.latex(); // Extract LaTeX string from MathQuill field (if needed)
-
-        // Set the video source and show the video with a 6-second delay
-        setTimeout(() => {
-            videoSource.src = "https://manors-videos-bucket.s3.us-east-2.amazonaws.com/c9dcd504-9404-11ef-9c17-c6ac684d68cbvideo.mp4"; // Set the video source
-            videoPlayer.load(); // Load the new video source into the player
-            videoContainer.style.display = 'block'; // Show the video container
-            spinner.style.display = 'none'; // Hide the spinner
-        }, 1000); // 6000ms = 6 seconds
+        // Always show API disconnect modal instead of spinner/video
+        const modal = new bootstrap.Modal(document.getElementById('apiModal'));
+        modal.show();
     });
+    //     // Get references to UI elements
+    //     const spinner = document.querySelector('.spinner'); // Spinner for loading indication
+    //     const videoContainer = document.querySelector('.video-container'); // Container for the video
+    //     const videoPlayer = document.getElementById('videoPlayer'); // Video player element
+    //     const videoSource = document.getElementById('videoSource'); // Video source element
+    //
+    //     // Show the spinner while processing
+    //     spinner.style.display = 'block'; // Display spinner
+    //     videoContainer.style.display = 'none'; // Hide video container initially
+    //
+    //     // Optional: Extract equation entered by the user in LaTeX format
+    //     const equation = mathField.latex(); // Extract LaTeX string from MathQuill field (if needed)
+    //
+    //     // Set the video source and show the video with a 6-second delay
+    //     setTimeout(() => {
+    //         videoSource.src = "https://manors-videos-bucket.s3.us-east-2.amazonaws.com/c9dcd504-9404-11ef-9c17-c6ac684d68cbvideo.mp4"; // Set the video source
+    //         videoPlayer.load(); // Load the new video source into the player
+    //         videoContainer.style.display = 'block'; // Show the video container
+    //         spinner.style.display = 'none'; // Hide the spinner
+    //     }, 1000); // 6000ms = 6 seconds
+    // });
 </script>
+<!-- ──────────────────────── MODALS ──────────────────────── -->
+<div class="modal fade" id="apiModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center"
+             style="background: rgba(25,25,25,0.95); border-radius: 15px; color: white;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title w-100 fw-bold"
+                    style="background: linear-gradient(to right, #f86c7a, #7cdbfa);
+                   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+                   font-size: 2vw;">
+                    API Keys Disconnected
+                </h5>
+            </div>
+            <div class="modal-body">
+                <p class="mb-3">
+                    Please visit
+                    <a href="https://youtu.be/6bqoZSDVw2M?si=PjE4_lfgCH7iHKdL" target="_blank"
+                       style="color: #7cdbfa; text-decoration: underline;">
+                        this video
+                    </a>
+                    to learn more about MathGen, then reload the page.
+                </p>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-lg text-white w-100"
+                        style="background: linear-gradient(to right, #f86c7a, #7cdbfa);
+                       border-radius: 25px; font-size: 1.5vw;"
+                        onclick="location.reload()">
+                    Reload Page
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
