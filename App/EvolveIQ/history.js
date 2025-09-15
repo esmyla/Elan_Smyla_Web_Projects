@@ -150,7 +150,7 @@ backBtn.addEventListener('click', () => {
 
 document.getElementById('logoutBtn').addEventListener('click', async () => {
     await supabase.auth.signOut();
-    window.location.href = 'EvolveIQ.html'; // redirect to login/home page after logout
+    window.location.href = 'index.html'; // redirect to login/home page after logout
 });
 
 function populateUserInfo(user) {
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadRuns();
     } else {
         // not logged in, redirect back to login page
-        window.location.href = 'EvolveIQ.html';
+        window.location.href = 'index.html';
     }
 
     keywordInput.addEventListener('input', applyFilters);

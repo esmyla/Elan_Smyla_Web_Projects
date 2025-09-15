@@ -28,7 +28,7 @@ lucide.createIcons();
 const projects = [
     {
         name: "CalHacks",
-        path: "CalHacks/calhacks.html",
+        path: "CalHacks/index.html",
         description: "LLM-powered workflow builder created at CalHacks.",
         image: "CalHacks/images/screenshot.png"
     },
