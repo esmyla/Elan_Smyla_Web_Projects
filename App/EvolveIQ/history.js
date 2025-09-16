@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await loadRuns();
         } else {
             // only redirect if we’re sure the user has no session after auth check
-            window.location.href = 'index.html';
+            window.location.href = 'history.html';
         }
     });
 
