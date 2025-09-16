@@ -348,15 +348,24 @@ function populateUserInfo(user) {
 
 // Init
 document.addEventListener('DOMContentLoaded', async () => {
+    // First try restoring session
     const { data: { session } } = await supabase.auth.getSession();
 
     if (session?.user) {
-        populateUserInfo(session.user); // populate navbar user info
+        populateUserInfo(session.user);
         await loadRuns();
-    } else {
-        // not logged in, redirect back to login page
-        window.location.href = 'index.html';
     }
+
+    // Listen for auth state changes (covers Google OAuth redirects too)
+    supabase.auth.onAuthStateChange(async (event, session) => {
+        if (session?.user) {
+            populateUserInfo(session.user);
+            await loadRuns();
+        } else {
+            // only redirect if we’re sure the user has no session after auth check
+            window.location.href = 'index.html';
+        }
+    });
 
     keywordInput.addEventListener('input', applyFilters);
     dateSelect.addEventListener('change', applyFilters);

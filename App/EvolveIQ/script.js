@@ -217,14 +217,11 @@ runForm.addEventListener("submit", (e) => {
 // On Page Load: Restore Session
 // ────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
-    // Only do auth restore if we’re on index.html
-    if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.user) {
-            showApp(session.user);
-        } else {
-            showAuth();
-        }
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+        showApp(session.user);
+    } else {
+        showAuth();
     }
 });
 
