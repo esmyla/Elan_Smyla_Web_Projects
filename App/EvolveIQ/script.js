@@ -8,14 +8,8 @@
 // ────────────────────────────────
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-console.log(`API Key: ${SUPABASE_URL}`);
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY;
-console.log(`API Key: ${SUPABASE_KEY}`);
-
-if (!SUPABASE_URL || !SUPABASE_KEY) {
-    console.error("Supabase environment variables are missing.");
-}
+const SUPABASE_URL = "https://pvjsmvoglzikngwpfrrc.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2anNtdm9nbHppa25nd3BmcnJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwNTI1OTUsImV4cCI6MjA3MzYyODU5NX0.keIkYl0AhssKhOkVUf7MmDChXsrFDjCLWIsz9-bm0zA";
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -201,7 +195,12 @@ logoutBtn.addEventListener("click", async () => {
 
 if (googleBtn) {
     googleBtn.addEventListener("click", async () => {
-        await supabase.auth.signInWithOAuth({ provider: "google" });
+        await supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                redirectTo: "https://elan-smyla-web-projects.vercel.app/EvolveIQ/index.html"
+            }
+        });
     });
 }
 
@@ -225,10 +224,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         showAuth();
     }
 });
-
-
-
-
-
-
 
