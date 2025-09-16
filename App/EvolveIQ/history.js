@@ -42,22 +42,21 @@ function fmtDate(iso) {
 // }
 
 async function loadRuns() {
-    // const { data: { session } } = await supabase.auth.getSession();
-    // if (!session?.user) return;
-    //
-    // const { data, error } = await supabase
-    //     .from('runs')
-    //     .select('id, keywords, created_at, status')
-    //     .eq('user_id', session.user.id)
-    //     .order('created_at', { ascending: false });
-    //
-    // if (error) {
-    //     console.error(error);
-    //     return;
-    // }
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) return;
 
-    // if (!data || !data.length) {
-    if(true){
+    const { data, error } = await supabase
+        .from('runs')
+        .select('id, keywords, created_at, status')
+        .eq('user_id', session.user.id)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    if (!data || !data.length) {
         // --- Example runs for testing ---
         allRuns = [
             {
@@ -80,7 +79,7 @@ async function loadRuns() {
             }
         ];
     } else {
-        // allRuns = data;
+        allRuns = data;
     }
 
     renderGallery(allRuns);
@@ -346,6 +345,7 @@ function populateUserInfo(user) {
         userInfoEl.classList.remove('hidden');
     }
 }
+
 
 // Init
 document.addEventListener('DOMContentLoaded', async () => {
