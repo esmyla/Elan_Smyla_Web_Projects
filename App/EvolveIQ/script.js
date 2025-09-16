@@ -197,9 +197,7 @@ if (googleBtn) {
     googleBtn.addEventListener("click", async () => {
         await supabase.auth.signInWithOAuth({
             provider: "google",
-            options: {
-                redirectTo: "https://elan-smyla-web-projects.vercel.app/EvolveIQ/index.html"
-            }
+            redirectTo: "https://elan-smyla-web-projects.vercel.app/EvolveIQ/index.html"
         });
     });
 }
