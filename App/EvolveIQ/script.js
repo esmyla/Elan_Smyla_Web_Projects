@@ -195,7 +195,12 @@ logoutBtn.addEventListener("click", async () => {
 
 if (googleBtn) {
     googleBtn.addEventListener("click", async () => {
-        await supabase.auth.signInWithOAuth({provider: "google"});
+        await supabase.auth.signInWithOAuth({
+            provider: "google",
+            options: {
+                redirectTo: "https://elan-smyla-web-projects.vercel.app/EvolveIQ/index.html"
+            }
+        });
     });
 }
 
