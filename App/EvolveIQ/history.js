@@ -42,21 +42,22 @@ function fmtDate(iso) {
 // }
 
 async function loadRuns() {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.user) return;
+    // const { data: { session } } = await supabase.auth.getSession();
+    // if (!session?.user) return;
+    //
+    // const { data, error } = await supabase
+    //     .from('runs')
+    //     .select('id, keywords, created_at, status')
+    //     .eq('user_id', session.user.id)
+    //     .order('created_at', { ascending: false });
+    //
+    // if (error) {
+    //     console.error(error);
+    //     return;
+    // }
 
-    const { data, error } = await supabase
-        .from('runs')
-        .select('id, keywords, created_at, status')
-        .eq('user_id', session.user.id)
-        .order('created_at', { ascending: false });
-
-    if (error) {
-        console.error(error);
-        return;
-    }
-
-    if (!data || !data.length) {
+    // if (!data || !data.length) {
+    if(true){
         // --- Example runs for testing ---
         allRuns = [
             {
@@ -79,7 +80,7 @@ async function loadRuns() {
             }
         ];
     } else {
-        allRuns = data;
+        // allRuns = data;
     }
 
     renderGallery(allRuns);
@@ -363,7 +364,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             await loadRuns();
         } else {
             // only redirect if we’re sure the user has no session after auth check
-            window.location.href = 'history.html';
+            window.location.href = 'index.html';
         }
     });
 
