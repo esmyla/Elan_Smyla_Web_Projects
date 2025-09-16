@@ -8,7 +8,7 @@
 // ────────────────────────────────
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-const SUPABASE_URL = process.env.SUPABASE_KEY;
+const SUPABASE_URL = process.env.SUPABASE_URL;
 console.log(`API Key: ${SUPABASE_URL}`);
 const SUPABASE_KEY = process.env.SUPABASE_KEY;
 console.log(`API Key: ${SUPABASE_KEY}`);
