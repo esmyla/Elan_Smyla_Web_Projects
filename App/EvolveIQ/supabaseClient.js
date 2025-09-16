@@ -4,5 +4,5 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js';
 
 export const supabase = createClient(
     'https://jdgljezoylnigbqymmel.supabase.co', //project url
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpkZ2xqZXpveWxuaWdicXltbWVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTM2NzQsImV4cCI6MjA2OTkyOTY3NH0.faUHQhrbUP1nWHKrQTxFOCXcDhwfX0XKu7E7hLwsGF0' //anon public key
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2anNtdm9nbHppa25nd3BmcnJjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwNTI1OTUsImV4cCI6MjA3MzYyODU5NX0.keIkYl0AhssKhOkVUf7MmDChXsrFDjCLWIsz9-bm0zA' //anon public key
 );
