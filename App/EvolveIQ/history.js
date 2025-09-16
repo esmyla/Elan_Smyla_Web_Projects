@@ -1,5 +1,6 @@
 
 import { supabase } from './supabaseClient.js';
+console.log(supabase)
 
 const listView      = document.getElementById('listView');
 const galleryEl     = document.getElementById('historyGallery');
@@ -41,18 +42,18 @@ async function loadRuns() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) return;
 
-    const { data, error } = await supabase
-        .from('runs')
-        .select('id, keywords, created_at, status')
-        .eq('user_id', session.user.id)
-        .order('created_at', { ascending: false });
+    // const { data, error } = await supabase
+    //     .from('runs')
+    //     .select('id, keywords, created_at, status')
+    //     .eq('user_id', session.user.id)
+    //     .order('created_at', { ascending: false });
+    //
+    // if (error) {
+    //     console.error(error);
+    //     return;
+    // }
 
-    if (error) {
-        console.error(error);
-        return;
-    }
-
-    if (!data || !data.length) {
+    if (true) {
         // --- Example runs for testing ---
         allRuns = [
             {
@@ -352,6 +353,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         // not logged in, redirect back to login page
         window.location.href = 'index.html';
+        console.log("cant find user")
     }
 
     keywordInput.addEventListener('input', applyFilters);
