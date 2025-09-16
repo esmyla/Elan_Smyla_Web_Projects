@@ -60,13 +60,13 @@ async function loadRuns() {
                 id: 'demo1',
                 keywords: ['AI', 'Startups'],
                 created_at: new Date(Date.now() - 3600*1000).toISOString(), // 1h ago
-                status: 'finished'
+                status: 'displayed'
             },
             {
                 id: 'demo2',
                 keywords: ['Climate'],
                 created_at: new Date(Date.now() - 86400*1000).toISOString(), // 1d ago
-                status: 'displayed'
+                status: 'finished'
             },
             {
                 id: 'demo3',
