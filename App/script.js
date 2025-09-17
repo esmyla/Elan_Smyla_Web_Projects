@@ -3,7 +3,7 @@ const socials = [
     { icon: 'github', href: 'https://github.com/esmyla', label: 'GitHub' },
     { icon: 'linkedin', href: 'https://www.linkedin.com/in/elansmyla', label: 'LinkedIn' },
     { icon: 'mail', href: 'mailto:elansmyla@gmail.com', label: 'Email' },
-    { icon: 'globe', href: 'https://elansmylawebproject.vercel.app', label: 'Website' },
+    { icon: 'globe', href: 'https://elan-smyla-web-projects.vercel.app/', label: 'Website' },
 ];
 
 const renderIcons = (containerId) => {
