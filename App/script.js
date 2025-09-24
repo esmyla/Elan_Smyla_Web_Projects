@@ -27,27 +27,29 @@ lucide.createIcons();
 // === Projects Grid ===
 const projects = [
     {
-        name: "CalHacks",
+        name: "HiveAI",
         path: "CalHacks/index.html",
-        description: "LLM-powered workflow builder created at CalHacks.",
+        description: "Hackathon project @ CalHacks. LLM-powered autonomous agent creation, including synchronous multi-agent communication to solve complex tasks.",
         image: "CalHacks/images/screenshot.png"
     },
     {
-        name: "HelloWorld",
+        name: "MathGen",
         path: "HelloWorld/index.html",
-        description: "Intro project using clean UI and JavaScript logic.",
+        description: "Hackathon project @ HelloWorld 2024. Math equation to video solution learning tool ~ 4th place overall. ",
         image: "HelloWorld/images/screenshot.png"
     },
     {
-        name: "BoilerMake",
+        name: "SmithAI",
         path: "BoilerMake/index.html",
-        description: "Hackathon project focused on real-time collaboration.",
+        description: "Hackathon project at Boilermake XII ~ 1st place Caterpillar: Best Cloud Implementation ~\n" +
+            "    1st Place MLH: Best Use of Gen AI ~       \n" +
+            "    1st Place Purdue Innovates: Most Likely to Become a Business",
         image: "BoilerMake/images/screenshot.png"
     },
     {
-        name: "EvolveIQ",
+        name: "LinkedInCommenter",
         path: "EvolveIQ/index.html",
-        description: "Agentic AI-powered system for social media automation.",
+        description: "Summer internship @ EvolveIQ. Agentic AI-powered application for autonomous corporate LinkedIn engagement. ",
         image: "EvolveIQ/images/screenshot.png"
     }
 ];
